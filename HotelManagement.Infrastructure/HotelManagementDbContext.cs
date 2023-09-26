@@ -11,4 +11,14 @@ public class HotelManagementDbContext : DbContext
 
     public DbSet<Hotel> Hotels { get; set; }
     public DbSet<Booking> Bookings { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder
+            .Entity<Hotel>()
+            .HasMany(h => h.Bookings)
+            .WithOne(b => b.Hotel)
+            .HasForeignKey(b => b.HotelId)
+            .HasPrincipalKey(h => h.Id);
+    }
 }

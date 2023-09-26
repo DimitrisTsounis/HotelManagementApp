@@ -65,7 +65,7 @@ public class HotelsController : ControllerBase
         Hotel existingHotel = await hotelRepository.GetByIdAsync(id);
 
         if (existingHotel is null)
-            return NotFound($"No hotel was found with the request Id: {id}");
+            return NotFound($"No hotel was found for the requested Id: {id}");
 
         mapper.Map(hotelDTO, existingHotel);
         hotelRepository.Update(existingHotel);
@@ -80,7 +80,7 @@ public class HotelsController : ControllerBase
         Hotel existingHotel = await hotelRepository.GetByIdAsync(id);
 
         if (existingHotel is null)
-            return NotFound($"No hotel was found with the request Id: {id}");
+            return NotFound($"No hotel was found for the requested Id: {id}");
 
         await hotelRepository.DeleteAsync(id);
         await hotelRepository.SaveAsync();

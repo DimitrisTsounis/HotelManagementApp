@@ -11,6 +11,7 @@ builder.Services.AddDbContext<HotelManagementDbContext>(options =>
 
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
+builder.Services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();
