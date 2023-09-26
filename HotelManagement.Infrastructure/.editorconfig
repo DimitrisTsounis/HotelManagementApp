@@ -14,3 +14,12 @@ dotnet_diagnostic.SA1516.severity = none
 
 # SA1128: Put constructor initializers on their own line
 dotnet_diagnostic.SA1128.severity = none
+
+# SA1601: Partial elements should be documented
+dotnet_diagnostic.SA1601.severity = none
+
+# SA1413: Use trailing comma in multi-line initializers
+dotnet_diagnostic.SA1413.severity = none
+
+# SA0001: XML comment analysis disabled
+dotnet_diagnostic.SA0001.severity = none

@@ -5,7 +5,7 @@ namespace HotelManagement.Infrastructure;
 
 public class HotelManagementDbContext : DbContext
 {
-    public HotelManagementDbContext(DbContextOptions options) : base(options)
+    public HotelManagementDbContext(DbContextOptions<HotelManagementDbContext> options) : base(options)
     {
     }
 
