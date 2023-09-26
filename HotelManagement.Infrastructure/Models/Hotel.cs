@@ -1,4 +1,4 @@
-﻿namespace HotelManagement.Models;
+﻿namespace HotelManagement.Infrastructure.Models;
 
 public class Hotel
 {
