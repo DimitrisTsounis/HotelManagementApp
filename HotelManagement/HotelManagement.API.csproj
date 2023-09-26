@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.11" />
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -16,8 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
