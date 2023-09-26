@@ -1,8 +1,7 @@
 ﻿namespace HotelManagement.Infrastructure.Models;
 
-public class Booking
+public class Booking : EntityBase
 {
-    public int Id { get; set; }
     public int HotelId { get; set; }
     public string CustomerName { get; set; }
     public int NumberOfPax { get; set; }
