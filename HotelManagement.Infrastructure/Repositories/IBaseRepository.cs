@@ -1,7 +1,8 @@
 ﻿using HotelManagement.Infrastructure.Models;
 
 namespace HotelManagement.Infrastructure.Repositories;
-public interface IBaseRepository<T> where T : EntityBase
+public interface IBaseRepository<T> 
+    where T : EntityBase
 {
     T Create(T entity);
     Task<T> GetByIdAsync(int id);

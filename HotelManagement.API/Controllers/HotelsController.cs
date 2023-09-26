@@ -11,13 +11,11 @@ namespace HotelManagement.Controllers;
 [Route("api/hotels")]
 public class HotelsController : ControllerBase
 {
-    private readonly IBaseRepository<Hotel> baseRepository;
     private readonly IHotelRepository hotelRepository;
     private readonly IMapper mapper;
 
-    public HotelsController(IBaseRepository<Hotel> baseRepository, IHotelRepository hotelRepository, IMapper mapper)
+    public HotelsController(IHotelRepository hotelRepository, IMapper mapper)
     {
-        this.baseRepository = baseRepository;
         this.hotelRepository = hotelRepository;
         this.mapper = mapper;
     }
@@ -25,7 +23,7 @@ public class HotelsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetHotels()
     {
-        IEnumerable<Hotel> hotels = await baseRepository.GetAllAsync();
+        IEnumerable<Hotel> hotels = await hotelRepository.GetAllAsync();
 
         return Ok(hotels);
     }
@@ -33,7 +31,7 @@ public class HotelsController : ControllerBase
     [HttpGet("id/{id}")]
     public async Task<IActionResult> GetHotelById([FromRoute] int id)
     {
-        Hotel hotel = await baseRepository.GetByIdAsync(id);
+        Hotel hotel = await hotelRepository.GetByIdAsync(id);
 
         if (hotel == null)
             return NotFound();
@@ -55,8 +53,8 @@ public class HotelsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateHotel([FromBody] Hotel hotel)
     {
-        baseRepository.Create(hotel);
-        await baseRepository.SaveAsync();
+        hotelRepository.Create(hotel);
+        await hotelRepository.SaveAsync();
 
         return Created(string.Empty, hotel);
     }
@@ -64,14 +62,14 @@ public class HotelsController : ControllerBase
     [HttpPatch("id/{id}")]
     public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] HotelManipulation_WebDTO hotelDTO)
     {
-        Hotel existingHotel = await baseRepository.GetByIdAsync(id);
+        Hotel existingHotel = await hotelRepository.GetByIdAsync(id);
 
         if (existingHotel is null)
             return NotFound($"No hotel was found with the request Id: {id}");
 
         mapper.Map(hotelDTO, existingHotel);
-        baseRepository.Update(existingHotel);
-        await baseRepository.SaveAsync();
+        hotelRepository.Update(existingHotel);
+        await hotelRepository.SaveAsync();
 
         return Ok();
     }
@@ -79,13 +77,13 @@ public class HotelsController : ControllerBase
     [HttpDelete("id/{id}")]
     public async Task<IActionResult> DeleteHotel([FromRoute] int id)
     {
-        Hotel existingHotel = await baseRepository.GetByIdAsync(id);
+        Hotel existingHotel = await hotelRepository.GetByIdAsync(id);
 
         if (existingHotel is null)
             return NotFound($"No hotel was found with the request Id: {id}");
 
-        await baseRepository.DeleteAsync(id);
-        await baseRepository.SaveAsync();
+        await hotelRepository.DeleteAsync(id);
+        await hotelRepository.SaveAsync();
 
         return Ok();
     }

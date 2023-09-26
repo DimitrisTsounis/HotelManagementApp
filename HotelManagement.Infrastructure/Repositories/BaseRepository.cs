@@ -2,7 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Infrastructure.Repositories;
-public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
+public class BaseRepository<T> : IBaseRepository<T> 
+    where T : EntityBase
 {
     private readonly HotelManagementDbContext _context;
 
