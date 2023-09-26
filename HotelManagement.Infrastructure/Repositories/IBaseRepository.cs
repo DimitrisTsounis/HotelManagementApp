@@ -3,10 +3,10 @@
 namespace HotelManagement.Infrastructure.Repositories;
 public interface IBaseRepository<T> where T : EntityBase
 {
-    Task<T> CreateAsync(T entity);
+    T Create(T entity);
     Task<T> GetByIdAsync(int id);
     Task<IEnumerable<T>> GetAllAsync();
-    Task UpdateAsync(T entity);
+    void Update(T entity);
     Task DeleteAsync(int id);
     Task SaveAsync();
 }

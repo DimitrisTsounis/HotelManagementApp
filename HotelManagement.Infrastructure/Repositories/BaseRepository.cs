@@ -11,12 +11,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
         this._context = _context;
     }
 
-    public async Task<T> CreateAsync(T entity)
+    public T Create(T entity)
     {
         if (entity == null)
             throw new ArgumentNullException(nameof(entity));
 
-        await _context.Set<T>().AddAsync(entity);
+        _context.Set<T>().Add(entity);
 
         return entity;
     }
@@ -27,7 +27,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : EntityBase
     public async Task<IEnumerable<T>> GetAllAsync() => 
         await _context.Set<T>().ToListAsync();
 
-    public async Task UpdateAsync(T entity)
+    public void Update(T entity)
     {
         _context.Set<T>().Update(entity);
         _context.Entry(entity).State = EntityState.Modified;
