@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "34029c2d-319d-4586-9fc2-529113ce48e3",
+		"name": "HotelManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11201384"
+	},
+	"item": [
+		{
+			"name": "Hotels",
+			"item": [
+				{
+					"name": "GetAllHotels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/hotels",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetHotelById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/hotels/id/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetHotelByName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/hotels/name/Hilton",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels",
+								"name",
+								"Hilton"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddHotel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Teeeeeeeest\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 55\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7155/api/hotels",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateHotel",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"AthenssssHilton\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 5555\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7155/api/hotels/id/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteHotel",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/hotels/id/5",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"hotels",
+								"id",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bookings",
+			"item": [
+				{
+					"name": "GetAllBookings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookingById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/bookings/id/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings",
+								"id",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetBookingsOfSpecificHotel",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/bookings/hotel?hotelId=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings",
+								"hotel"
+							],
+							"query": [
+								{
+									"key": "hotelId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AddBooking",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\": 4,\r\n    \"customerName\": \"dtsounis\",\r\n    \"numberOfPax\": 33\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7155/api/bookings",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateBooking",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hotelId\": 4,\r\n    \"customerName\": \"dtsounissssssssssss\",\r\n    \"numberOfPax\": 3333\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7155/api/bookings/id/8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings",
+								"id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteBooking",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7155/api/bookings/id/8",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7155",
+							"path": [
+								"api",
+								"bookings",
+								"id",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
