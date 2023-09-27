@@ -9,6 +9,9 @@ public class BookingValidator : AbstractValidator<Booking>
         RuleFor(it => it.HotelId)
             .NotNull();
 
+        RuleFor(it => it.HotelId)
+            .GreaterThan(0);
+
         RuleFor(it => it.CustomerName)
             .NotEmpty();
     }
