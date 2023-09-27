@@ -1,6 +1,6 @@
 ﻿namespace HotelManagement.API.WebDTOs;
 
-public class BookingManipulation_WebDTO
+public class Booking_ManipulationWebDTO
 {
     public int HotelId { get; set; }
     public string CustomerName { get; set; }

@@ -14,13 +14,13 @@ public class HotelsController : ControllerBase
 {
     private readonly IHotelRepository hotelRepository;
     private readonly IMapper mapper;
-    private readonly IValidator<Hotel> hotelValidator;
+    private readonly IValidator<Hotel> validator;
 
-    public HotelsController(IHotelRepository hotelRepository, IMapper mapper, IValidator<Hotel> hotelValidator)
+    public HotelsController(IHotelRepository hotelRepository, IMapper mapper, IValidator<Hotel> validator)
     {
         this.hotelRepository = hotelRepository;
         this.mapper = mapper;
-        this.hotelValidator = hotelValidator;
+        this.validator = validator;
     }
 
     [HttpGet]
@@ -28,7 +28,7 @@ public class HotelsController : ControllerBase
     {
         IEnumerable<Hotel> hotels = await hotelRepository.GetAllAsync();
 
-        return Ok(hotels);
+        return Ok(hotels.Select(mapper.Map<Hotel_OutputWebDTO>));
     }
 
     [HttpGet("id/{id}")]
@@ -39,7 +39,7 @@ public class HotelsController : ControllerBase
         if (hotel == null)
             return NotFound();
         
-        return Ok(hotel);
+        return Ok(mapper.Map<Hotel_OutputWebDTO>(hotel));
     }
 
     [HttpGet("name/{name}")]
@@ -50,21 +50,23 @@ public class HotelsController : ControllerBase
 
         IEnumerable<Hotel> hotels = await hotelRepository.SearchHotelsByNameAsync(name);
 
-        return Ok(hotels);
+        return Ok(hotels.Select(mapper.Map<Hotel_OutputWebDTO>));
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateHotel([FromBody] Hotel hotel)
     {
-        await hotelValidator.ValidateAndThrowAsync(hotel);
+        await validator.ValidateAndThrowAsync(hotel);
         hotelRepository.Create(hotel);
         await hotelRepository.SaveAsync();
 
-        return Created(string.Empty, hotel);
+        Hotel_OutputWebDTO outputHotel = mapper.Map<Hotel_OutputWebDTO>(hotel);
+
+        return Created(string.Empty, outputHotel);
     }
 
     [HttpPatch("id/{id}")]
-    public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] HotelManipulation_WebDTO hotelDTO)
+    public async Task<IActionResult> UpdateHotel([FromRoute] int id, [FromBody] Hotel_ManipulationWebDTO hotelDTO)
     {
         Hotel existingHotel = await hotelRepository.GetByIdAsync(id);
 
@@ -72,6 +74,8 @@ public class HotelsController : ControllerBase
             return NotFound($"No hotel was found for the requested Id: {id}");
 
         mapper.Map(hotelDTO, existingHotel);
+        await validator.ValidateAndThrowAsync(existingHotel);
+
         hotelRepository.Update(existingHotel);
         await hotelRepository.SaveAsync();
 

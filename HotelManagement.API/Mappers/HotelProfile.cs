@@ -8,6 +8,7 @@ public class HotelProfile : Profile
 {
     public HotelProfile()
     {
-        CreateMap<HotelManipulation_WebDTO, Hotel>();
+        CreateMap<Hotel_ManipulationWebDTO, Hotel>();
+        CreateMap<Hotel, Hotel_OutputWebDTO>();
     }
 }

@@ -8,6 +8,7 @@ public class BookingProfile : Profile
 {
     public BookingProfile()
     {
-        CreateMap<BookingManipulation_WebDTO, Booking>();
+        CreateMap<Booking_ManipulationWebDTO, Booking>();
+        CreateMap<Booking, Booking_OutputWebDTO>();
     }
 }

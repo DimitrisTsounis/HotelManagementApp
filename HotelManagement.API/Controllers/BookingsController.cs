@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using HotelManagement.API.WebDTOs;
 using HotelManagement.Infrastructure.Models;
 using HotelManagement.Infrastructure.Repositories;
@@ -12,11 +13,13 @@ public class BookingsController : ControllerBase
 {
     private readonly IBookingRepository bookingRepository;
     private readonly IMapper mapper;
+    private readonly IValidator<Booking> validator;
 
-    public BookingsController(IBookingRepository bookingRepository, IMapper mapper)
+    public BookingsController(IBookingRepository bookingRepository, IMapper mapper, IValidator<Booking> validator)
     {
         this.bookingRepository = bookingRepository;
         this.mapper = mapper;
+        this.validator = validator;
     }
 
     [HttpGet]
@@ -24,7 +27,7 @@ public class BookingsController : ControllerBase
     {
         IEnumerable<Booking> bookings = await bookingRepository.GetAllAsync();
 
-        return Ok(bookings);
+        return Ok(bookings.Select(mapper.Map<Booking_OutputWebDTO>));
     }
 
     [HttpGet("id/{id}")]
@@ -35,31 +38,34 @@ public class BookingsController : ControllerBase
         if (booking is null)
             return NotFound();
 
-        return Ok(booking);
+        return Ok(mapper.Map<Booking_OutputWebDTO>(booking));
     }
 
     [HttpGet("hotel")]
     public async Task<IActionResult> GetBookingsOfSpecifiedHotel([FromQuery] int hotelId)
     {
-        IEnumerable<Booking> booking = await bookingRepository.GetAllBookingsOfSpecifiedHotel(hotelId);
+        IEnumerable<Booking> bookings = await bookingRepository.GetAllBookingsOfSpecifiedHotel(hotelId);
 
-        if (booking is null)
+        if (bookings is null)
             return NotFound();
 
-        return Ok(booking);
+        return Ok(bookings.Select(mapper.Map<Booking_OutputWebDTO>));
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateBooking([FromBody] Booking booking)
     {
+        await validator.ValidateAndThrowAsync(booking);
         bookingRepository.Create(booking);
         await bookingRepository.SaveAsync();
 
-        return Created(string.Empty, booking);
+        Booking_OutputWebDTO outputBooking = mapper.Map<Booking_OutputWebDTO>(booking);
+
+        return Created(string.Empty, outputBooking);
     }
 
     [HttpPatch("id/{id}")]
-    public async Task<IActionResult> UpdateBooking([FromRoute] int id, [FromBody] BookingManipulation_WebDTO bookinglDTO)
+    public async Task<IActionResult> UpdateBooking([FromRoute] int id, [FromBody] Booking_ManipulationWebDTO bookinglDTO)
     {
         Booking existingBooking = await bookingRepository.GetByIdAsync(id);
 
@@ -67,6 +73,8 @@ public class BookingsController : ControllerBase
             return NotFound($"No booking was found for the requested Id: {id}");
 
         mapper.Map(bookinglDTO, existingBooking);
+        await validator.ValidateAndThrowAsync(existingBooking);
+
         bookingRepository.Update(existingBooking);
         await bookingRepository.SaveAsync();
 
