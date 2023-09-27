@@ -51,6 +51,19 @@ public class HotelsControllerTests
     }
 
     [Fact]
+    public async Task GivenGetHotelByName_WhenWithInValidName_ThenReturnsBadRequest()
+    {
+        // Given
+        const string name = "";
+
+        // When
+        var result = await controller.GetHotelByName(name);
+
+        // Then
+        result.Should().BeOfType<BadRequestObjectResult>();
+    }
+
+    [Fact]
     public async Task GivenGetHotelByName_WhenWithValidName_ThenReturnsOkResult()
     {
         // Given
