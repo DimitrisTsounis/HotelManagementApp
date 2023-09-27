@@ -44,4 +44,31 @@ public class BaseRepository_IntegrationTests
         createdHotel.Should().NotBeNull();
         createdHotel.Should().Be(hotelToBeInserted);
     }
+
+    [Fact]
+    public async Task GivenUpdate_WhenCalled_ThenEntityShouldBeUpdated()
+    {
+        // Given
+        var hotel = new Hotel { Id = 1, Name = "TestName", Address = "TestAddress", StarRating = 1 };
+
+        using (var context = new HotelManagementDbContext(options))
+        {
+            context.Hotels.Add(hotel);
+            context.SaveChanges();
+        }
+        hotel.Name = "UpdatedTestName";
+
+        // When & Then
+        using (var context = new HotelManagementDbContext(options))
+        {
+            var baseRepository = new BaseRepository<Hotel>(context);
+            
+            baseRepository.Update(hotel);
+            await baseRepository.SaveAsync();
+
+            var updatedHotel = await baseRepository.GetByIdAsync(1);
+            updatedHotel.Should().NotBeNull();
+            updatedHotel.Name.Should().Be("UpdatedTestName");
+        }
+    }
 }
