@@ -1,7 +1,5 @@
 ﻿using FluentValidation.TestHelper;
-using HotelManagement.Infrastructure.Models;
 using HotelManagement.Infrastructure.Validators;
-using Xunit;
 
 namespace HotelManagement.UnitTests;
 public class ValidatorTests

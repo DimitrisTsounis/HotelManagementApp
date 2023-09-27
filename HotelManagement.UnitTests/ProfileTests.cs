@@ -1,6 +1,4 @@
-﻿using AutoMapper;
-using HotelManagement.API.Mappers;
-using Xunit;
+﻿using HotelManagement.API.Mappers;
 
 namespace HotelManagement.UnitTests;
 public class ProfileTests

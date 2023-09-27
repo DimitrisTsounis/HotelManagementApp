@@ -1,0 +1,10 @@
+﻿global using AutoMapper;
+global using FluentAssertions;
+global using FluentValidation;
+global using HotelManagement.API.WebDTOs;
+global using HotelManagement.Controllers;
+global using HotelManagement.Infrastructure.Models;
+global using HotelManagement.Infrastructure.Repositories;
+global using Microsoft.AspNetCore.Mvc;
+global using Moq;
+global using Xunit;

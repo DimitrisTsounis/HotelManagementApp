@@ -1,11 +1,4 @@
-﻿using FluentAssertions;
-using HotelManagement.Infrastructure;
-using HotelManagement.Infrastructure.Models;
-using HotelManagement.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-
-namespace HotelManagement.IntegrationTests;
+﻿namespace HotelManagement.IntegrationTests;
 public class BaseRepository_IntegrationTests
 {
     private readonly DbContextOptions<HotelManagementDbContext> options = new DbContextOptionsBuilder<HotelManagementDbContext>()
