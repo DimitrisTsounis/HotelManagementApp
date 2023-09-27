@@ -1,5 +1,8 @@
+using FluentValidation;
 using HotelManagement.Infrastructure;
+using HotelManagement.Infrastructure.Models;
 using HotelManagement.Infrastructure.Repositories;
+using HotelManagement.Infrastructure.Validators;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,9 @@ builder.Services.AddDbContext<HotelManagementDbContext>(options =>
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
 builder.Services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
+
+builder.Services.AddScoped<IValidator<Hotel>, HotelValidator>();
+builder.Services.AddScoped<IValidator<Booking>, BookingValidator>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddEndpointsApiExplorer();

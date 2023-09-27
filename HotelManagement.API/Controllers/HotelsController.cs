@@ -1,4 +1,5 @@
 using AutoMapper;
+using FluentValidation;
 using HotelManagement.API.WebDTOs;
 using HotelManagement.Infrastructure.Models;
 using HotelManagement.Infrastructure.Repositories;
@@ -13,11 +14,13 @@ public class HotelsController : ControllerBase
 {
     private readonly IHotelRepository hotelRepository;
     private readonly IMapper mapper;
+    private readonly IValidator<Hotel> hotelValidator;
 
-    public HotelsController(IHotelRepository hotelRepository, IMapper mapper)
+    public HotelsController(IHotelRepository hotelRepository, IMapper mapper, IValidator<Hotel> hotelValidator)
     {
         this.hotelRepository = hotelRepository;
         this.mapper = mapper;
+        this.hotelValidator = hotelValidator;
     }
 
     [HttpGet]
@@ -53,6 +56,7 @@ public class HotelsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateHotel([FromBody] Hotel hotel)
     {
+        await hotelValidator.ValidateAndThrowAsync(hotel);
         hotelRepository.Create(hotel);
         await hotelRepository.SaveAsync();
 
