@@ -32,7 +32,7 @@ public class BaseRepository_IntegrationTests
     public void GivenCreate_WhenCalled_ThenReturnsNewEntity()
     {
         // Given
-        Hotel hotelToBeInserted = new() { Id = 1, Name = "TestName", Address = "TestAddress", StarRating = 1 };
+        Hotel hotelToBeInserted = new() { Id = 3, Name = "TestName", Address = "TestAddress", StarRating = 1 };
 
         using var context = new HotelManagementDbContext(options);
         var baseRepository = new BaseRepository<Hotel>(context);
@@ -49,7 +49,7 @@ public class BaseRepository_IntegrationTests
     public async Task GivenUpdate_WhenCalled_ThenEntityShouldBeUpdated()
     {
         // Given
-        var hotel = new Hotel { Id = 1, Name = "TestName", Address = "TestAddress", StarRating = 1 };
+        var hotel = new Hotel { Id = 4, Name = "TestName", Address = "TestAddress", StarRating = 1 };
 
         using (var context = new HotelManagementDbContext(options))
         {
@@ -66,7 +66,7 @@ public class BaseRepository_IntegrationTests
             baseRepository.Update(hotel);
             await baseRepository.SaveAsync();
 
-            var updatedHotel = await baseRepository.GetByIdAsync(1);
+            var updatedHotel = await baseRepository.GetByIdAsync(4);
             updatedHotel.Should().NotBeNull();
             updatedHotel.Name.Should().Be("UpdatedTestName");
         }
