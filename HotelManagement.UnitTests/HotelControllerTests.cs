@@ -23,7 +23,11 @@ public class HotelsControllerTests
     public async Task GivenGetHotels_WhenIsCalled_ThenReturnsOkResult()
     {
         // Given
-        var hotels = new List<Hotel>();
+        var hotels = new List<Hotel>()
+        {
+            new Hotel { Name = "TestName", Address = "TestAddress", StarRating = 4 },
+        };
+
         hotelRepositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(hotels);
         mapperMock.Setup(mapper => mapper.Map<IEnumerable<Hotel_OutputWebDTO>>(hotels)).Returns(new List<Hotel_OutputWebDTO>());
 
@@ -68,7 +72,11 @@ public class HotelsControllerTests
     {
         // Given
         const string name = "TestHotel";
-        var hotels = new List<Hotel>();
+        var hotels = new List<Hotel>()
+        {
+            new Hotel { Name = name, Address = "TestAddress", StarRating = 4 },
+        };
+
         hotelRepositoryMock.Setup(repo => repo.SearchHotelsByNameAsync(name)).ReturnsAsync(hotels);
         mapperMock.Setup(mapper => mapper.Map<IEnumerable<Hotel_OutputWebDTO>>(hotels)).Returns(new List<Hotel_OutputWebDTO>());
 
