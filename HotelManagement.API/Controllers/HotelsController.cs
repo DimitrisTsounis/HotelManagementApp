@@ -1,10 +1,5 @@
 using AutoMapper;
 using FluentValidation;
-using HotelManagement.API.WebDTOs;
-using HotelManagement.Infrastructure.Models;
-using HotelManagement.Infrastructure.Repositories;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace HotelManagement.Controllers;
 

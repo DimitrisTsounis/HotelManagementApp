@@ -1,8 +1,6 @@
 using FluentValidation;
 using HotelManagement.API.Middlewares;
 using HotelManagement.Infrastructure;
-using HotelManagement.Infrastructure.Models;
-using HotelManagement.Infrastructure.Repositories;
 using HotelManagement.Infrastructure.Validators;
 using Microsoft.EntityFrameworkCore;
 
