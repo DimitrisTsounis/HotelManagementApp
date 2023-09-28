@@ -1,4 +1,5 @@
 using FluentValidation;
+using HotelManagement.API.Middlewares;
 using HotelManagement.Infrastructure;
 using HotelManagement.Infrastructure.Models;
 using HotelManagement.Infrastructure.Repositories;
@@ -11,7 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<HotelManagementDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("defaultConnection")));
+builder.Services.AddLogging();
 
+
+builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 builder.Services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 builder.Services.AddScoped(typeof(IHotelRepository), typeof(HotelRepository));
 builder.Services.AddScoped(typeof(IBookingRepository), typeof(BookingRepository));
@@ -35,6 +39,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.MapControllers();
 
