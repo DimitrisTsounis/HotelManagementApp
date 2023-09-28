@@ -26,8 +26,9 @@ public class BookingsController : ControllerBase
     public async Task<IActionResult> GetBookings()
     {
         IEnumerable<Booking> bookings = await bookingRepository.GetAllAsync();
+        var dto = bookings.Select(mapper.Map<Booking_OutputWebDTO>);
 
-        return Ok(bookings.Select(mapper.Map<Booking_OutputWebDTO>));
+        return Ok(dto);
     }
 
     [HttpGet("id/{id}")]
@@ -48,8 +49,10 @@ public class BookingsController : ControllerBase
 
         if (bookings is null)
             return NotFound();
+        
+        var dto = bookings.Select(mapper.Map<Booking_OutputWebDTO>);
 
-        return Ok(bookings.Select(mapper.Map<Booking_OutputWebDTO>));
+        return Ok(dto);
     }
 
     [HttpPost]
@@ -94,5 +97,4 @@ public class BookingsController : ControllerBase
 
         return Ok();
     }
-
 }

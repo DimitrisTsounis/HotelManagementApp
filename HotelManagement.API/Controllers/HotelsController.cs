@@ -27,8 +27,9 @@ public class HotelsController : ControllerBase
     public async Task<IActionResult> GetHotels()
     {
         IEnumerable<Hotel> hotels = await hotelRepository.GetAllAsync();
+        var dto = hotels.Select(mapper.Map<Hotel_OutputWebDTO>);
 
-        return Ok(hotels.Select(mapper.Map<Hotel_OutputWebDTO>));
+        return Ok(dto);
     }
 
     [HttpGet("id/{id}")]
@@ -49,8 +50,9 @@ public class HotelsController : ControllerBase
             return BadRequest("Search term 'name' should have a valid value.");
 
         IEnumerable<Hotel> hotels = await hotelRepository.SearchHotelsByNameAsync(name);
+        var dto = hotels.Select(mapper.Map<Hotel_OutputWebDTO>);
 
-        return Ok(hotels.Select(mapper.Map<Hotel_OutputWebDTO>));
+        return Ok(dto));
     }
 
     [HttpPost]
