@@ -7,7 +7,7 @@ public class GlobalExceptionHandlingMiddleware : IMiddleware
 {
     private readonly ILogger logger;
 
-    public GlobalExceptionHandlingMiddleware(ILogger logger)
+    public GlobalExceptionHandlingMiddleware(ILogger<GlobalExceptionHandlingMiddleware> logger)
     {
         this.logger = logger;
     }

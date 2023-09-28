@@ -52,7 +52,7 @@ public class HotelsController : ControllerBase
         IEnumerable<Hotel> hotels = await hotelRepository.SearchHotelsByNameAsync(name);
         var dto = hotels.Select(mapper.Map<Hotel_OutputWebDTO>);
 
-        return Ok(dto));
+        return Ok(dto);
     }
 
     [HttpPost]
