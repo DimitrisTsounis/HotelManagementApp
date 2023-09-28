@@ -37,7 +37,7 @@ services:
       - api        
     volumes:
       - ./seed_data.sql:/seed_data.sql  
-    command: ["/bin/bash", "-c", "sleep 10s && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P sa12345! -i /seed_data.sql"]
+    command: ["/bin/bash", "-c", "sleep 30s && /opt/mssql-tools/bin/sqlcmd -S sqlserver -U sa -P sa12345! -i /seed_data.sql"]
     networks:
       - app-network
 
