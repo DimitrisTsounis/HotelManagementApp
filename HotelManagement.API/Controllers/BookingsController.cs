@@ -26,8 +26,11 @@ public class BookingsController : ControllerBase
     public async Task<IActionResult> GetBookings()
     {
         IEnumerable<Booking> bookings = await bookingRepository.GetAllAsync();
-        var dto = bookings.Select(mapper.Map<Booking_OutputWebDTO>);
 
+        if (!bookings.Any())
+            return NoContent();
+
+        var dto = bookings.Select(mapper.Map<Booking_OutputWebDTO>);
         return Ok(dto);
     }
 
@@ -48,22 +51,22 @@ public class BookingsController : ControllerBase
         IEnumerable<Booking> bookings = await bookingRepository.GetAllBookingsOfSpecifiedHotel(hotelId);
 
         if (bookings is null)
-            return NotFound();
+            return NoContent();
         
         var dto = bookings.Select(mapper.Map<Booking_OutputWebDTO>);
-
         return Ok(dto);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBooking([FromBody] Booking booking)
+    public async Task<IActionResult> CreateBooking([FromBody] Booking_ManipulationWebDTO bookingInsertDTO)
     {
-        await validator.ValidateAndThrowAsync(booking);
-        bookingRepository.Create(booking);
+        Booking bookingToBeInserted = mapper.Map(bookingInsertDTO, new Booking());
+
+        await validator.ValidateAndThrowAsync(bookingToBeInserted);
+        bookingRepository.Create(bookingToBeInserted);
         await bookingRepository.SaveAsync();
 
-        Booking_OutputWebDTO outputBooking = mapper.Map<Booking_OutputWebDTO>(booking);
-
+        Booking_OutputWebDTO outputBooking = mapper.Map<Booking_OutputWebDTO>(bookingInsertDTO);
         return Created(string.Empty, outputBooking);
     }
 
