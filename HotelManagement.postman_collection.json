@@ -15,12 +15,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/hotels",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels"
@@ -35,17 +35,17 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/hotels/id/1",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels/id/5",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels",
 								"id",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -57,12 +57,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/hotels/name/Hilton",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels/name/Hilton",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels",
@@ -80,7 +80,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Teeeeeeeest\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 55\r\n}",
+							"raw": "{\r\n    \"name\": \"Teeeeeeeest\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 5\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -88,12 +88,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7155/api/hotels",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels"
@@ -109,7 +109,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AthenssssHilton\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 5555\r\n}",
+							"raw": "{\r\n    \"name\": \"AthenssssHilton\",\r\n    \"address\": \"Athens\",\r\n    \"starRating\": 4\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -117,17 +117,17 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7155/api/hotels/id/1",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels/id/5",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels",
 								"id",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -139,12 +139,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/hotels/id/5",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/hotels/id/5",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"hotels",
@@ -166,12 +166,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/bookings",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings"
@@ -186,12 +186,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/bookings/id/1",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings/id/1",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings",
@@ -208,12 +208,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/bookings/hotel?hotelId=1",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings/hotel?hotelId=1",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings",
@@ -236,7 +236,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"hotelId\": 4,\r\n    \"customerName\": \"dtsounis\",\r\n    \"numberOfPax\": 33\r\n}",
+							"raw": "{\r\n    \"hotelId\": 4,\r\n    \"customerName\": \"FirstCustomer\",\r\n    \"numberOfPax\": 33\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -244,12 +244,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7155/api/bookings",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings"
@@ -273,12 +273,12 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7155/api/bookings/id/8",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings/id/8",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings",
@@ -295,12 +295,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7155/api/bookings/id/8",
-							"protocol": "https",
+							"raw": "http://localhost:80/api/bookings/id/8",
+							"protocol": "http",
 							"host": [
 								"localhost"
 							],
-							"port": "7155",
+							"port": "80",
 							"path": [
 								"api",
 								"bookings",
